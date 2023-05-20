@@ -1,2 +1,1 @@
-# neuvector-api
-🎒 NeuVector Controller API wrapper
+# :sparkles: neuvector-api
