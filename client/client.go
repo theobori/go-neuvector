@@ -84,6 +84,16 @@ func (client *Client) RefreshToken() error {
 	return nil
 }
 
+// Update the HTTP(s) request header with client configuration
+func (client *Client) UpdateHeader(header *http.Header, hasBody bool) {
+	header.Add("X-Auth-Token", client.token)
+	header.Add("Accept", "application/json")
+
+	if hasBody {
+		header.Add("Content-Type", "application/json")
+	}
+}
+
 // Create a basic NeuVector HTTP(s) request
 func (client *Client) NewRequest(
 	method string,
@@ -113,12 +123,7 @@ func (client *Client) NewRequest(
 		return nil, err
 	}
 
-	req.Header.Add("X-Auth-Token", client.token)
-	req.Header.Add("Accept", "application/json")
-
-	if body != nil {
-		req.Header.Add("Content-Type", "application/json")
-	}
+	client.UpdateHeader(&req.Header, body != nil)
 
 	return req, nil
 }
