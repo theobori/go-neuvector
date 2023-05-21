@@ -1,4 +1,11 @@
-package neuvector
+package policy
+
+import (
+	"fmt"
+	"strconv"
+
+	"github.com/theobori/go-neuvector/client"
+)
 
 // Response type for a single policy
 type getPolicyResponse struct {
@@ -30,13 +37,28 @@ type GetPoliciesResponse struct {
 const (
 	// Endpoint to get every policies
 	GetPoliciesEndpoint = "/policy/rule"
+	// Endpoint to get a specific policy
+	GetPolicyEndpoint = "/policy/rule/%s"
 )
 
 // Returns a list of policies
-func GetPolicies(client *Client) (*GetPoliciesResponse, error) {
+func GetPolicies(client *client.Client) (*GetPoliciesResponse, error) {
 	var ret GetPoliciesResponse
 
 	if err := client.Get(GetPoliciesEndpoint, &ret); err != nil {
+		return nil, err
+	}
+
+	return &ret, nil
+}
+
+// Returns a list of policies
+func GetPolicy(client *client.Client, id int) (*GetPolicyResponse, error) {
+	var ret GetPolicyResponse
+
+	url := fmt.Sprintf(GetPolicyEndpoint, strconv.Itoa(id))
+
+	if err := client.Get(url, &ret); err != nil {
 		return nil, err
 	}
 

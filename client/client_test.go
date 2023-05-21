@@ -1,4 +1,4 @@
-package neuvector
+package client
 
 import (
 	"testing"

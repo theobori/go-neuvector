@@ -1,6 +1,11 @@
 # Formatted Go files
 GOFMT_FILES ?= $(shell find . -name "*.go")
-PKG_DIR = ./neuvector
+NEUVECTOR_DIR = ./neuvector
+PKG_DIR = \
+	./client \
+	$(NEUVECTOR_DIR)/scan \
+	$(NEUVECTOR_DIR)/policy \
+	$(NEUVECTOR_DIR)/service
 
 default: fmt
 

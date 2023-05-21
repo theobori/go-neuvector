@@ -1,8 +1,9 @@
-package neuvector
+package client
 
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io"
 	"log"
 	"net/http"
@@ -95,7 +96,7 @@ func (client *Client) NewRequest(
 	url := client.BaseUrl + "/" + endpoint
 
 	if reqBody != nil {
-		body, err = json.Marshal(body)
+		body, err = json.Marshal(reqBody)
 
 		if err != nil {
 			return nil, err
@@ -169,8 +170,12 @@ func (client *Client) CallAPI(
 	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
 		return &APIError{
 			resp.StatusCode,
-			"Invalid status code",
+			fmt.Sprintf("Unable to process (%s) (%s)", method, endpoint),
 		}
+	}
+
+	if ret == nil {
+		return nil
 	}
 
 	if err = json.Unmarshal([]byte(body), &ret); err != nil {
