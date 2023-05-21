@@ -13,7 +13,7 @@ func TestPatchServiceConfig(t *testing.T) {
 	client, err := client.NewDefaultClient()
 
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 		return
 	}
 
@@ -27,6 +27,6 @@ func TestPatchServiceConfig(t *testing.T) {
 
 	err = PatchServiceConfig(client, config)
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 	}
 }

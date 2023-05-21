@@ -13,7 +13,7 @@ func TestCreateRegistry(t *testing.T) {
 	client, err := client.NewDefaultClient()
 
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 		return
 	}
 
@@ -36,6 +36,6 @@ func TestCreateRegistry(t *testing.T) {
 	)
 
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 	}
 }

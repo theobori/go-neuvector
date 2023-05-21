@@ -13,13 +13,13 @@ func TestDeleteRegistry(t *testing.T) {
 	client, err := client.NewDefaultClient()
 
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 		return
 	}
 
 	err = DeleteRegistry(client, "docker-restry")
 
 	if err != nil {
-		t.Skipf("%s", err.Error())
+		t.Skipf(err.Error())
 	}
 }

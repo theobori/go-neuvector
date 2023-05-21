@@ -11,14 +11,14 @@ func TestGetRegistries(t *testing.T) {
 	client, err := client.NewDefaultClient()
 
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 		return
 	}
 
 	registries, err := GetRegistries(client)
 
 	if err != nil || registries == nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 	}
 }
 
@@ -27,13 +27,13 @@ func TestGetRegistry(t *testing.T) {
 	client, err := client.NewDefaultClient()
 
 	if err != nil {
-		t.Errorf("%s", err.Error())
+		t.Errorf(err.Error())
 		return
 	}
 
 	registries, err := GetRegistry(client, "docker-registry")
 
 	if err != nil || registries == nil {
-		t.Skipf("%s", err.Error())
+		t.Skipf(err.Error())
 	}
 }
