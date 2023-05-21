@@ -44,9 +44,9 @@ type getRegistryResponse struct {
 	RepoLimit           int        `json:"repo_limit"`
 	TagLimit            int        `json:"tag_limit"`
 	Schedule            Schedule   `json:"schedule"`
-	AWSKey              *AWSKey    `json:"aws_key"`
-	JFrogXray           *JFrogXray `json:"jfrog_xray"`
-	GCRKey              *GCRKey    `json:"gcr_key"`
+	AWSKey              *AWSKey    `json:"aws_key,omitempty"`
+	JFrogXray           *JFrogXray `json:"jfrog_xray,omitempty"`
+	GCRKey              *GCRKey    `json:"gcr_key,omitempty"`
 	JFrogMode           string     `json:"jfrog_mode"`
 	GitlabExternalURL   string     `json:"gitlab_external_url"`
 	GitlabPrivateToken  string     `json:"gitlab_private_token"`
