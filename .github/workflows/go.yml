@@ -1,4 +1,4 @@
-name: Go
+name: Go tests with NeuVector allinone
 
 on:
   push:
@@ -16,14 +16,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Install make
-        run: sudo apt-get update && sudo apt-get install -y make
-
       - uses: actions/setup-go@v4
         with:
           go-version: '>=1.2.0'
       - run: go version
 
-      - name: Build and test
+      - name: Run the NeuVector allinone instance and Go unitary tests
         run: |
           make test
