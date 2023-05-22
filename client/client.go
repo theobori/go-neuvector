@@ -54,18 +54,16 @@ func NewClient(config *ClientConfig) (*Client, error) {
 
 // Instanciates a new Client object with its default values
 func NewDefaultClient() (*Client, error) {
-	basicAuth := BasicAuth{
-		Username: DefaultUsername,
-		Password: DefaultPassword,
-	}
-
+	auth := NewClientAuth(
+		DefaultUsername,
+		DefaultPassword,
+	)
+	
 	return NewClient(
 		&ClientConfig{
-			auth: ClientAuth{
-				basicAuth,
-			},
+			auth: *auth,
 			BaseUrl:  DefaultBaseUrl,
-			insecure: true,
+			Insecure: true,
 		},
 	)
 }

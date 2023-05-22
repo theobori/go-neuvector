@@ -22,14 +22,31 @@ type ClientAuth struct {
 	Password BasicAuth `json:"password"`
 }
 
+// Returns *ClientAuth
+func NewClientAuth(username	string, password string) *ClientAuth {
+	return &ClientAuth{
+		Password: BasicAuth{
+			Username: username,
+			Password: password,
+		},
+	}
+}
+
 // Client configuration
 type ClientConfig struct {
 	// TLS skip invalid certificate
-	insecure bool
+	Insecure bool
 	// Controller REST API base url
 	BaseUrl string
 	// Crednetials
 	auth ClientAuth
+}
+
+// Returns *ClientConfig
+func NewClientConfig(auth *ClientAuth) *ClientConfig {
+	return &ClientConfig{
+		auth: *auth,
+	}
 }
 
 // Represents the NeuVector token JSON object
@@ -52,7 +69,7 @@ func (tokenResponse *TokenResponse) Getvalue() string {
 func (config *ClientConfig) GetHTTPTransport() *http.Transport {
 	return &http.Transport{
 		TLSClientConfig: &tls.Config{
-			InsecureSkipVerify: config.insecure,
+			InsecureSkipVerify: config.Insecure,
 		},
 	}
 }
