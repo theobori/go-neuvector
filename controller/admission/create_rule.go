@@ -21,7 +21,7 @@ type CreateAdmissionRuleBody struct {
 	Comment  string                   `json:"comment"`
 	Criteria []AdmissionRuleCriterion `json:"criteria,omitempty"`
 	Disable  bool                     `json:"disable"`
-	Actions  *[][]interface{}         `json:"actions,omitempty"`
+	Actions  *[][]any                 `json:"actions,omitempty"`
 	CfgType  string                   `json:"cfg_type"`
 	RuleType string                   `json:"rule_type"`
 	RuleMode *string                  `json:"rule_mode,omitempty"`

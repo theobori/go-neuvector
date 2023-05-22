@@ -98,7 +98,7 @@ func (client *Client) UpdateHeader(header *http.Header, hasBody bool) {
 func (client *Client) NewRequest(
 	method string,
 	endpoint string,
-	reqBody interface{},
+	reqBody any,
 ) (*http.Request, error) {
 	var body []byte
 	var err error
@@ -145,8 +145,8 @@ func (client *Client) CallRequest(req *http.Request) (*http.Response, error) {
 func (client *Client) CallAPI(
 	method string,
 	endpoint string,
-	reqBody interface{},
-	ret interface{},
+	reqBody any,
+	ret any,
 ) error {
 	req, err := client.NewRequest(
 		method,
@@ -191,26 +191,26 @@ func (client *Client) CallAPI(
 }
 
 // Computes a HTTP(s) GET request with the client context
-func (client *Client) Get(endpoint string, ret interface{}) error {
+func (client *Client) Get(endpoint string, ret any) error {
 	return client.CallAPI("GET", endpoint, nil, ret)
 }
 
 // Computes a HTTP(s) POST request with the client context
-func (client *Client) Post(endpoint string, reqBody interface{}, ret interface{}) error {
+func (client *Client) Post(endpoint string, reqBody any, ret any) error {
 	return client.CallAPI("POST", endpoint, reqBody, ret)
 }
 
 // Computes a HTTP(s) PUT request with the client context
-func (client *Client) Put(endpoint string, reqBody interface{}, ret interface{}) error {
+func (client *Client) Put(endpoint string, reqBody any, ret any) error {
 	return client.CallAPI("PUT", endpoint, reqBody, ret)
 }
 
 // Computes a HTTP(s) DELETE request with the client context
-func (client *Client) Delete(endpoint string, reqBody interface{}, ret interface{}) error {
+func (client *Client) Delete(endpoint string, reqBody any, ret any) error {
 	return client.CallAPI("DELETE", endpoint, reqBody, ret)
 }
 
 // Computes a HTTP(s) PATCH request with the client context
-func (client *Client) Patch(endpoint string, reqBody interface{}, ret interface{}) error {
+func (client *Client) Patch(endpoint string, reqBody any, ret any) error {
 	return client.CallAPI("PATCH", endpoint, reqBody, ret)
 }
