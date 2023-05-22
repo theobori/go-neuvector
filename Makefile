@@ -1,7 +1,7 @@
 # Formatted Go files
 GOFMT_FILES ?= $(shell find . -name "*.go")
 CONTROLLER_DIR = ./controller
-PKG_DIR = \
+GOTEST_FILES = \
 	$(CONTROLLER_DIR)/policy \
 	$(CONTROLLER_DIR)/admission \
 	$(CONTROLLER_DIR)/scan \
@@ -17,11 +17,14 @@ clean:
 
 test: clean
 	docker-compose up -d
+
 	go test ./client  -v
 	go test $(CONTROLLER_DIR)/federation  -v
+
 	@echo Idle 10 seconds for logon session timeout
 	@sleep 10
-	go test $(PKG_DIR) -v
+
+	go test $(GOTEST_FILES) -v
 
 .PHONY: \
 	fmt \
