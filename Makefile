@@ -15,9 +15,10 @@ fmt:
 clean:
 	go clean -testcache
 
-test: clean
+neuvector:
 	docker-compose up -d
 
+test: clean neuvector
 	go test ./client  -v
 	go test $(CONTROLLER_DIR)/federation  -v
 
