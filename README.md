@@ -16,8 +16,6 @@ If you want to help the project, you can follow the guidelines in [CONTRIBUTING.
 
 ```go
 import (
-    "fmt"
-
     "github.com/theobori/go-neuvector/client"
     "github.com/theobori/go-neuvector/neuvector/scan"
 )
@@ -30,12 +28,6 @@ func main() {
     }
 
     registries, err := scan.GetRegistries(client)
-
-    if err != nil {
-        return
-    }
-
-    fmt.Println(*registries)
 }
 ```
 
