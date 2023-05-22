@@ -18,6 +18,7 @@ func TestDeleteFedAdmissionRule(t *testing.T) {
 	}
 
 	err = DeleteFedAdmissionRule(client, 100001)
+
 	if err != nil {
 		t.Errorf(err.Error())
 	}

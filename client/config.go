@@ -29,7 +29,7 @@ type ClientConfig struct {
 	// Controller REST API base url
 	BaseUrl string
 	// Crednetials
-	Auth ClientAuth
+	auth ClientAuth
 }
 
 // Represents the NeuVector token JSON object
@@ -70,7 +70,7 @@ func (config *ClientConfig) GetToken() (TokenResponse, error) {
 
 	client := config.GetHTTPClient()
 	url := config.BaseUrl + "/auth"
-	bufferJSON, err := json.Marshal(config.Auth)
+	bufferJSON, err := json.Marshal(config.auth)
 
 	if err != nil {
 		return token, err

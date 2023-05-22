@@ -41,7 +41,6 @@ func NewClient(config *ClientConfig) (*Client, error) {
 	client := Client{
 		BaseUrl: config.BaseUrl,
 		Logger:  logger.Info,
-		token:   "",
 		client:  config.GetHTTPClient(),
 		config:  config,
 	}
@@ -62,7 +61,7 @@ func NewDefaultClient() (*Client, error) {
 
 	return NewClient(
 		&ClientConfig{
-			Auth: ClientAuth{
+			auth: ClientAuth{
 				basicAuth,
 			},
 			BaseUrl:  DefaultBaseUrl,
