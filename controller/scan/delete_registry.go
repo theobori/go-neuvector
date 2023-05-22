@@ -15,9 +15,5 @@ const (
 func DeleteRegistry(client *client.Client, name string) error {
 	url := fmt.Sprintf(DeleteRegistryEndpoint, name)
 
-	if err := client.Delete(url, nil, nil); err != nil {
-		return err
-	}
-
-	return nil
+	return client.Delete(url, nil, nil)
 }

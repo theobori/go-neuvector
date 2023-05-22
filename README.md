@@ -1,12 +1,16 @@
 # ✨ go-neuvector
 
-NeuVector Controller API wrapper with full abstraction.
+NeuVector Controller API wrapper with abstraction for useful features.
 
 ## 📖 How to build and run ?
 
 1. Install the dependencies
     - `go`
     - `make` (for tests)
+
+## 🤝 Contribute
+
+If you want to help the project, you can follow the guidelines in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## ℹ️ Usage example
 
@@ -50,5 +54,6 @@ Name           | State
 -------------  | :-------------:
 Auto refresh token | ❌
 Service configuration (patch) | ✅
-Admission (create/delete) + fed | ❌
-Policy (patch) + fed | ❌
+Admission (create/delete) + fed | ✅
+Policy (patch) + fed | ✅
+Federation promote as master cluster | ✅

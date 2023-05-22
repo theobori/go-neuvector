@@ -17,8 +17,11 @@ func NewAPIError(statusCode int, reason string) APIError {
 }
 
 func (error *APIError) Error() string {
-	return fmt.Sprintf("Invalid HTTP status code: %d - ", error.StatusCode) +
-		fmt.Sprintf("Reason: %s", error.Reason)
+	return fmt.Sprintf(
+		"Invalid HTTP status code: %d - %s",
+		error.StatusCode,
+		error.Reason,
+	)
 }
 
 func (error *APIError) String() string {

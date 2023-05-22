@@ -6,7 +6,7 @@ import (
 	"github.com/theobori/go-neuvector/client"
 )
 
-// Test if the client is able to create a registry
+// Test if the client is able to patch a service configuration
 func TestPatchServiceConfig(t *testing.T) {
 	var err error
 
@@ -26,6 +26,7 @@ func TestPatchServiceConfig(t *testing.T) {
 	*config.Services = []string{"nodes"}
 
 	err = PatchServiceConfig(client, config)
+
 	if err != nil {
 		t.Errorf(err.Error())
 	}

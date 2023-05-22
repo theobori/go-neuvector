@@ -26,9 +26,5 @@ const (
 func PatchServiceConfig(client *client.Client, body PatchServiceConfigBody) error {
 	fullBody := PatchServiceConfigBodyFull{body}
 
-	if err := client.Patch(PatchServiceConfigEndpoint, fullBody, nil); err != nil {
-		return err
-	}
-
-	return nil
+	return client.Patch(PatchServiceConfigEndpoint, fullBody, nil)
 }

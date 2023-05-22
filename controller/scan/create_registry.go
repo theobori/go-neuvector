@@ -45,9 +45,5 @@ const (
 func CreateRegistry(client *client.Client, body CreateRegistryBody) error {
 	fullBody := CreateRegistryBodyFull{body}
 
-	if err := client.Post(CreateRegistryEndpoint, fullBody, nil); err != nil {
-		return err
-	}
-
-	return nil
+	return client.Post(CreateRegistryEndpoint, fullBody, nil)
 }
