@@ -44,7 +44,7 @@ make test
 
 Name           | State
 -------------  | :-------------:
-Auto refresh token | ❌
+Bypass expired token --> single session refresh | ✅
 Service configuration (patch) | ✅
 Admission (create/delete) + fed | ✅
 Policy (patch) + fed | ✅

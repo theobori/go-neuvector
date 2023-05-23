@@ -68,6 +68,11 @@ func NewDefaultClient() (*Client, error) {
 	)
 }
 
+// Used to set expired token with unitary tests
+func (client *Client) SetToken(value string) {
+	client.token = value
+}
+
 // Refresh the client token
 func (client *Client) RefreshToken() error {
 	tokenResponse, err := client.config.GetToken()
@@ -169,10 +174,21 @@ func (client *Client) CallAPI(
 		return err
 	}
 
+	if resp.StatusCode == http.StatusRequestTimeout {
+		client.RefreshToken()
+
+		return client.CallAPI(
+			method,
+			endpoint,
+			reqBody,
+			ret,
+		)
+	}
+
 	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
 		return &APIError{
 			resp.StatusCode,
-			fmt.Sprintf("Unable to process (%s) (%s)", method, endpoint),
+			fmt.Sprintf("(%s) (%s)", method, endpoint),
 		}
 	}
 
