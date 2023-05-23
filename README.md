@@ -6,7 +6,8 @@ NeuVector Controller API wrapper with abstraction for useful features.
 
 1. Install the dependencies
     - `go`
-    - `make`, `docker-compose` (for tests)
+    - `make` (for tests)
+    - `docker-compose` (for tests)
 
 ## 🤝 Contribute
 
