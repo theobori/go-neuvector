@@ -143,7 +143,7 @@ func (client *Client) CallRequest(req *http.Request) (*http.Response, error) {
 
 // Create a new NeuVector HTTP(s) request then executes it
 //
-// If there is no error, the reponse JSON is unmarshaled and stored into ret
+// If there is no error, the JSON response is unmarshaled and stored into ret
 func (client *Client) CallAPI(
 	method string,
 	endpoint string,

@@ -38,8 +38,11 @@ func TestCreateFedAdmissionRule(t *testing.T) {
 		Disable: false,
 	}
 
-	err = CreateFedAdmissionRule(client, config)
-	if err != nil {
+	resp, err := CreateFedAdmissionRule(client, config)
+
+	if err != nil || resp == nil {
 		t.Errorf(err.Error())
 	}
+
+	
 }

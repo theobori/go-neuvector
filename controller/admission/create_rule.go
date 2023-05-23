@@ -32,20 +32,34 @@ type CreateAdmissionRuleBodyFull struct {
 	Config CreateAdmissionRuleBody `json:"config"`
 }
 
+// Represents the response after creating an admission rule
+type CreateAdmissionRuleResponse = CreateAdmissionRuleBody;
+
+// Represents the complete response after creating an admission rule
+type CreateAdmissionRuleResponseFull = struct {
+	Rule  CreateAdmissionRuleResponse `json:"rule"`
+}
+
 const (
 	// Endpoint to get a specific admission rule
 	CreateAdmissionRuleEndpoint = "/admission/rule"
 )
 
 // Add a new admission rule
-func CreateAdmissionRule(client *client.Client, body CreateAdmissionRuleBody) error {
+func CreateAdmissionRule(client *client.Client, body CreateAdmissionRuleBody) (*CreateAdmissionRuleResponse, error) {
+	var ret CreateAdmissionRuleResponseFull
+
 	fullBody := CreateAdmissionRuleBodyFull{body}
 
-	return client.Post(CreateAdmissionRuleEndpoint, fullBody, nil)
+	if err := client.Post(CreateAdmissionRuleEndpoint, fullBody, &ret); err != nil {
+		return nil, err
+	}
+
+	return &ret.Rule, nil
 }
 
 // Add a new admission rule in the federation
-func CreateFedAdmissionRule(client *client.Client, body CreateAdmissionRuleBody) error {
+func CreateFedAdmissionRule(client *client.Client, body CreateAdmissionRuleBody) (*CreateAdmissionRuleResponse, error) {
 	body.CfgType = "federal"
 
 	return CreateAdmissionRule(client, body)
