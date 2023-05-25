@@ -9,7 +9,7 @@ import (
 
 // Response type for a single policy
 type getPolicyResponse struct {
-	Id                    int      `json:"id"`
+	ID                    int      `json:"id"`
 	Comment               string   `json:"comment"`
 	From                  string   `json:"from"`
 	To                    string   `json:"to"`

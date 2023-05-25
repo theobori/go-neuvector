@@ -32,7 +32,7 @@ func TestPatchFedPolicy(t *testing.T) {
 					Disable:  false,
 					From:     "fed.containers",
 					To:       "fed.containers",
-					Id:       100001,
+					ID:       100001,
 					Learned:  false,
 					Ports:    "any",
 					Priority: 0,
