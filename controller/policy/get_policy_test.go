@@ -34,6 +34,6 @@ func TestGetPolicy(t *testing.T) {
 	policy, err := GetPolicy(client, 1)
 
 	if err != nil || policy == nil {
-		t.Skipf(err.Error())
+		t.SkipNow()
 	}
 }

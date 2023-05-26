@@ -18,7 +18,7 @@ clean:
 neuvector:
 	docker-compose up -d
 
-test: clean neuvector
+test: clean
 	go test ./client  -v
 	go test $(CONTROLLER_DIR)/federation  -v
 

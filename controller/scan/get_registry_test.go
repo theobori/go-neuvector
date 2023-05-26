@@ -34,6 +34,6 @@ func TestGetRegistry(t *testing.T) {
 	registries, err := GetRegistry(client, "docker-registry")
 
 	if err != nil || registries == nil {
-		t.Skipf(err.Error())
+		t.SkipNow()
 	}
 }

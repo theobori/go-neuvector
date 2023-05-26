@@ -1,11 +1,26 @@
 package policy
 
 import (
+	"reflect"
+
 	"github.com/theobori/go-neuvector/client"
 )
 
 // Policy rule data structure
 type PolicyRule = getPolicyResponse
+
+// Returns if 2 policy rules are equal with other unique identifiers thand ID
+func (p *PolicyRule) Equal(dest *PolicyRule) bool {
+	return p.From == dest.From &&
+		p.To == dest.To &&
+		p.Ports == dest.Ports &&
+		reflect.DeepEqual(p.Applications, dest.Applications) &&
+		p.Learned == dest.Learned &&
+		p.Disable == dest.Disable &&
+		p.Comment == dest.Comment &&
+		p.CfgType == dest.CfgType
+
+}
 
 // Data structure to insert a policy rule after another one
 type PolicyRuleInsert struct {

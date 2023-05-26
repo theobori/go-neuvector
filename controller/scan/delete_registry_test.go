@@ -17,9 +17,9 @@ func TestDeleteRegistry(t *testing.T) {
 		return
 	}
 
-	err = DeleteRegistry(client, "docker-restry")
+	err = DeleteRegistry(client, "unknown")
 
 	if err != nil {
-		t.Skipf(err.Error())
+		t.SkipNow()
 	}
 }

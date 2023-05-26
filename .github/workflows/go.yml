@@ -23,4 +23,5 @@ jobs:
 
       - name: Run the NeuVector allinone instance and Go unitary tests
         run: |
+          make neuvector
           make test

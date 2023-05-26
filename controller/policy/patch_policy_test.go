@@ -42,6 +42,6 @@ func TestPatchFedPolicy(t *testing.T) {
 	)
 
 	if err != nil {
-		t.Skipf(err.Error())
+		t.SkipNow()
 	}
 }
