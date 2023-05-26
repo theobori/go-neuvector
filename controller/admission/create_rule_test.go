@@ -44,5 +44,4 @@ func TestCreateFedAdmissionRule(t *testing.T) {
 		t.Errorf(err.Error())
 	}
 
-	
 }

@@ -33,11 +33,11 @@ type CreateAdmissionRuleBodyFull struct {
 }
 
 // Represents the response after creating an admission rule
-type CreateAdmissionRuleResponse = CreateAdmissionRuleBody;
+type CreateAdmissionRuleResponse = CreateAdmissionRuleBody
 
 // Represents the complete response after creating an admission rule
 type CreateAdmissionRuleResponseFull = struct {
-	Rule  CreateAdmissionRuleResponse `json:"rule"`
+	Rule CreateAdmissionRuleResponse `json:"rule"`
 }
 
 const (

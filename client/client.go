@@ -58,10 +58,10 @@ func NewDefaultClient() (*Client, error) {
 		DefaultUsername,
 		DefaultPassword,
 	)
-	
+
 	return NewClient(
 		&ClientConfig{
-			auth: *auth,
+			auth:     *auth,
 			BaseUrl:  DefaultBaseUrl,
 			Insecure: true,
 		},

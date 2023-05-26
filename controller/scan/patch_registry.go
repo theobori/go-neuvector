@@ -12,7 +12,6 @@ type PatchRegistryBody = CreateRegistryBody
 // Represents the complete type for a registry
 type PatchRegistryBodyFull = CreateRegistryBodyFull
 
-
 const (
 	// Endpoint to patch a specific registry
 	PatchRegistryEndpoint = "/scan/registry/%s"

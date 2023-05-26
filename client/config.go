@@ -23,7 +23,7 @@ type ClientAuth struct {
 }
 
 // Returns *ClientAuth
-func NewClientAuth(username	string, password string) *ClientAuth {
+func NewClientAuth(username string, password string) *ClientAuth {
 	return &ClientAuth{
 		Password: BasicAuth{
 			Username: username,
