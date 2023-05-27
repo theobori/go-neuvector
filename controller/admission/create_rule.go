@@ -41,7 +41,7 @@ type CreateAdmissionRuleResponseFull = struct {
 }
 
 const (
-	// Endpoint to get a specific admission rule
+	// Endpoint to create a specific admission rule
 	CreateAdmissionRuleEndpoint = "/admission/rule"
 )
 

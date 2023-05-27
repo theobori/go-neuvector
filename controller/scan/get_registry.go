@@ -67,7 +67,6 @@ type getRegistryResponse struct {
 // Represents a single registry
 type Registry = getRegistryResponse
 
-
 // Response type to get every registries
 type GetRegistriesResponse struct {
 	Registries []Registry `json:"summarys"`
@@ -96,6 +95,7 @@ func GetRegistries(client *client.Client) (*GetRegistriesResponse, error) {
 	return &ret, nil
 }
 
+// Returns a registry with a specific `name`
 func GetRegistry(client *client.Client, name string) (*GetRegistryResponse, error) {
 	var ret GetRegistryResponse
 
