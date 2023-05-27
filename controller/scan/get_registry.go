@@ -65,17 +65,17 @@ type getRegistryResponse struct {
 }
 
 // Represents a single registry
-type Regitry = getRegistryResponse
+type Registry = getRegistryResponse
 
 
 // Response type to get every registries
 type GetRegistriesResponse struct {
-	Registries []getRegistryResponse `json:"summarys"`
+	Registries []Registry `json:"summarys"`
 }
 
 // Response type to get a single registry
 type GetRegistryResponse struct {
-	Registry getRegistryResponse `json:"summary"`
+	Registry Registry `json:"summary"`
 }
 
 const (
