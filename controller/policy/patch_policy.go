@@ -6,9 +6,6 @@ import (
 	"github.com/theobori/go-neuvector/client"
 )
 
-// Policy rule data structure
-type PolicyRule = getPolicyResponse
-
 // Returns if 2 policy rules are equal with other unique identifiers thand ID
 func (p *PolicyRule) Equal(dest *PolicyRule) bool {
 	return p.From == dest.From &&

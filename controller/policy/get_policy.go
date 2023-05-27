@@ -24,6 +24,9 @@ type getPolicyResponse struct {
 	Priority              int      `json:"priority"`
 }
 
+// Policy rule data structure
+type PolicyRule = getPolicyResponse
+
 // Full form for a policy
 type GetPolicyResponse struct {
 	Rule getPolicyResponse `json:"rule"`

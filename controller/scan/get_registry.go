@@ -64,8 +64,18 @@ type getRegistryResponse struct {
 	CVEDBCreateTime     string     `json:"cvedb_create_time,omitempty"`
 }
 
+// Represents a single registry
+type Regitry = getRegistryResponse
+
+
+// Response type to get every registries
 type GetRegistriesResponse struct {
 	Registries []getRegistryResponse `json:"summarys"`
+}
+
+// Response type to get a single registry
+type GetRegistryResponse struct {
+	Registry getRegistryResponse `json:"summary"`
 }
 
 const (
@@ -86,8 +96,8 @@ func GetRegistries(client *client.Client) (*GetRegistriesResponse, error) {
 	return &ret, nil
 }
 
-func GetRegistry(client *client.Client, name string) (*getRegistryResponse, error) {
-	var ret getRegistryResponse
+func GetRegistry(client *client.Client, name string) (*GetRegistryResponse, error) {
+	var ret GetRegistryResponse
 
 	url := fmt.Sprintf(GetRegistryEndpoint, name)
 
