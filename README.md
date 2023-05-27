@@ -2,6 +2,8 @@
 
 NeuVector Controller API wrapper with abstraction for useful features.
 
+The abstraction
+
 ## 📖 How to build and run ?
 
 1. Install the dependencies
@@ -13,24 +15,7 @@ NeuVector Controller API wrapper with abstraction for useful features.
 
 If you want to help the project, you can follow the guidelines in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-## ℹ️ Usage example
-
-```go
-import (
-    "github.com/theobori/go-neuvector/client"
-    "github.com/theobori/go-neuvector/neuvector/scan"
-)
-
-func main() {
-    client, err := client.NewDefaultClient()
-
-    if err != nil {
-        return
-    }
-
-    registries, err := scan.GetRegistries(client)
-}
-```
+There are some types written by neuvector [here](https://github.com/neuvector/neuvector/blob/main/controller/api), which we've redone some of them for greater clarity and ease of reading. But we're not opposed to using them for future implementations.
 
 ## 🧪 Tests
 
