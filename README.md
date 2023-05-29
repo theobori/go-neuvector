@@ -1,4 +1,4 @@
-# ✨ go-neuvector
+# 🐛 go-neuvector
 
 NeuVector Controller API wrapper with abstraction for useful features.
 
