@@ -2,8 +2,6 @@
 
 NeuVector Controller API wrapper with abstraction for useful features.
 
-The abstraction
-
 ## 📖 How to build and run ?
 
 1. Install the dependencies
