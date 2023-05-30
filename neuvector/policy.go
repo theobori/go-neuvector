@@ -155,7 +155,7 @@ func (c *Client) GetPolicyAvailableIDs(min int, max int, amount int) ([]int, err
 }
 
 // Patch a policy rule
-func (c *Client) patchPolicy(body PatchPolicyBody, isFed bool) error {
+func (c *Client) PatchPolicy(body PatchPolicyBody, isFed bool) error {
 	var url string
 
 	if isFed {
@@ -165,14 +165,4 @@ func (c *Client) patchPolicy(body PatchPolicyBody, isFed bool) error {
 	}
 
 	return c.Patch(url, body, nil)
-}
-
-// Patch a policy rule
-func (c *Client) PatchPolicy(body PatchPolicyBody) error {
-	return c.patchPolicy(body, false)
-}
-
-// Patch a policy rule in the federation
-func (c *Client) PatchFedPolicy(body PatchPolicyBody) error {
-	return c.patchPolicy(body, true)
 }

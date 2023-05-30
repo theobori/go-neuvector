@@ -45,7 +45,7 @@ func TestPatchFedPolicy(t *testing.T) {
 		return
 	}
 
-	err = c.PatchFedPolicy(
+	err = c.PatchPolicy(
 		PatchPolicyBody{
 			Delete: []int{},
 			Rules: []PolicyRule{
@@ -66,6 +66,7 @@ func TestPatchFedPolicy(t *testing.T) {
 				},
 			},
 		},
+		true,
 	)
 
 	if err != nil {
