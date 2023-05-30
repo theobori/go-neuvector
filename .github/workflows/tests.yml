@@ -28,7 +28,7 @@ jobs:
 
       - name: Waitings for NeuVector to initialize
         run: |
-          sleep 30
+          sleep 20
 
       - name: Run the NeuVector allinone instance and Go unitary tests
         run: |
