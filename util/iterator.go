@@ -10,7 +10,7 @@ func ItemExists(arrayType any, item any) (bool, error) {
 	arr := reflect.ValueOf(arrayType)
 
 	if arr.Kind() != reflect.Slice {
-		return false, fmt.Errorf("must be a reflect.Array")
+		return false, fmt.Errorf("must be a reflect.Slice")
 	}
 
 	for i := 0; i < arr.Len(); i++ {

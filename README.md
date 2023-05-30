@@ -15,7 +15,7 @@ NeuVector Controller API wrapper with abstraction for useful features.
 
 If you want to help the project, you can follow the guidelines in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
-There are some types written by neuvector [here](https://github.com/neuvector/neuvector/blob/main/controller/api), which we've redone some of them for greater clarity and ease of reading. But we're not opposed to using them for future implementations.
+There are some types written by neuvector [here](https://github.com/neuvector/neuvector/blob/main/controller/api), which we've redone some of them for greater clarity, ease of reading and to avoid the hassle of licenses. But we're not opposed to using them for future implementations.
 
 ## 🧪 Tests
 
@@ -27,12 +27,12 @@ make neuvector
 make test
 ```
 
-## ✅ Todo
+## 🎉 Tasks
 
-Name           | State
--------------  | :-------------:
-Bypass expired token --> single session refresh | ✅
-Service configuration (patch) | ✅
-Admission (create/delete) + fed | ✅
-Policy (patch) + fed | ✅
-Federation promote as master cluster | ✅
+- [x] Bypass expired token --> single session refresh
+- [x] Service configuration (patch)
+- [x] Admission (create/delete) + fed
+- [x] Policy (patch) + fed
+- [x] Federation promote as master cluster
+- [x] eula
+- [x] service create/delete

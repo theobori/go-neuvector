@@ -1,4 +1,4 @@
-package client
+package neuvector
 
 import (
 	"testing"
@@ -18,6 +18,8 @@ func TestClient(t *testing.T) {
 }
 
 func TestExpiredToken(t *testing.T) {
+	var ret any
+
 	client, err := NewDefaultClient()
 
 	if err != nil {
@@ -26,8 +28,6 @@ func TestExpiredToken(t *testing.T) {
 
 	// Replaced old token without refreshing aka compute a new one
 	client.SetToken(ExpiredToken)
-
-	var ret any
 
 	if err := client.Get("/policy/rule", ret); err == nil {
 		t.Errorf("%s", err.Error())

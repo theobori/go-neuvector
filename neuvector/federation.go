@@ -1,8 +1,4 @@
-package federation
-
-import (
-	"github.com/theobori/go-neuvector/client"
-)
+package neuvector
 
 // Federation master rest informations
 type MasterRestInfo struct {
@@ -17,19 +13,12 @@ type FederationMetadata struct {
 	User           string         `json:"user"`
 }
 
-const (
-	// Endpoint to promote
-	PromoteEndpoint = "/fed/promote"
-	// Endpoint to demote
-	DemoteEndpoint = "/fed/demote"
-)
-
 // Promote a NeuVector instance as master
-func Promote(client *client.Client, body FederationMetadata) error {
-	return client.Post(PromoteEndpoint, body, nil)
+func (c *Client) Promote(body FederationMetadata) error {
+	return c.Post("/fed/promote", body, nil)
 }
 
 // Demote a NeuVector instance as master
-func Demote(client *client.Client) error {
-	return client.Post(DemoteEndpoint, nil, nil)
+func (c *Client) Demote() error {
+	return c.Post("/fed/demote", nil, nil)
 }

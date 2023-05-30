@@ -1,24 +1,19 @@
-package federation
+package neuvector
 
-import (
-	"testing"
-
-	"github.com/theobori/go-neuvector/client"
-)
+import "testing"
 
 // Test to promote the NeuVector instance
 func TestPromote(t *testing.T) {
 	var err error
 
-	client, err := client.NewDefaultClient()
+	c, err := NewDefaultClient()
 
 	if err != nil {
 		t.Errorf(err.Error())
 		return
 	}
 
-	err = Promote(
-		client,
+	err = c.Promote(
 		FederationMetadata{
 			MasterRestInfo: MasterRestInfo{
 				Port:   11443,
@@ -36,7 +31,7 @@ func TestPromote(t *testing.T) {
 
 // Test to demote the NeuVector instance
 func TestDemote(t *testing.T) {
-	_, err := client.NewDefaultClient()
+	_, err := NewDefaultClient()
 
 	if err != nil {
 		t.Errorf(err.Error())
@@ -44,7 +39,7 @@ func TestDemote(t *testing.T) {
 	}
 
 	// The cluster need to be promoted for the others test
-	// err = Demote(client)
+	// err = c.Demote()
 
 	if err != nil {
 		t.Errorf(err.Error())

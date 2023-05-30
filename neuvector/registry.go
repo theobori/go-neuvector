@@ -1,10 +1,6 @@
-package scan
+package neuvector
 
-import (
-	"fmt"
-
-	"github.com/theobori/go-neuvector/client"
-)
+import "fmt"
 
 type Schedule struct {
 	Schedule string `json:"schedule"`
@@ -77,18 +73,68 @@ type GetRegistryResponse struct {
 	Registry Registry `json:"summary"`
 }
 
-const (
-	// Endpoint to get every registries
-	GetRegistriesEndpoint = "/scan/registry"
-	// Endpoint to get a specific registry
-	GetRegistryEndpoint = "/scan/registry/%s"
-)
+// Represents the body to create a registry
+type CreateRegistryBody struct {
+	Name                string     `json:"name"`
+	RegistryType        string     `json:"registry_type"`
+	Registry            string     `json:"registry,omitempty"`
+	Filters             []string   `json:"filters"`
+	Username            *string    `json:"username,omitempty"`
+	Password            *string    `json:"password,omitempty"`
+	AuthToken           *string    `json:"auth_token,omitempty"`
+	AuthWithToken       bool       `json:"auth_with_token"`
+	RescanAfterDBUpdate bool       `json:"rescan_after_db_update"`
+	ScanLayers          bool       `json:"scan_layers"`
+	RepoLimit           *int       `json:"repo_limit,omitempty"`
+	TagLimit            *int       `json:"tag_limit,omitempty"`
+	Schedule            *Schedule  `json:"schedule,omitempty"`
+	AWSKey              *AWSKey    `json:"aws_key,omitempty"`
+	JFrogXray           *JFrogXray `json:"jfrog_xray,omitempty"`
+	GCRKey              *GCRKey    `json:"gcr_key,omitempty"`
+	JFrogMode           *string    `json:"jfrog_mode,omitempty"`
+	JFrogAQL            *bool      `json:"jfrog_aql,omitempty"`
+	GitlabExternalURL   *string    `json:"gitlab_external_url,omitempty"`
+	GitlabPrivateToken  *string    `json:"gitlab_private_token,omitempty"`
+	IBMCloudTokenURL    *string    `json:"ibm_cloud_token_url,omitempty"`
+	IBMCloudAccount     *string    `json:"ibm_cloud_account,omitempty"`
+	CfgType             *string    `json:"cfg_type,omitempty"`
+}
 
-// Returns a list of policies
-func GetRegistries(client *client.Client) (*GetRegistriesResponse, error) {
+// Represents the full complete body to create a registry
+type CreateRegistryBodyFull struct {
+	Config CreateRegistryBody `json:"config"`
+}
+
+// Represents the type for a registry
+type PatchRegistryBody = CreateRegistryBody
+
+// Represents the complete type for a registry
+type PatchRegistryBodyFull = CreateRegistryBodyFull
+
+// Patch an existing registry
+func (c *Client) PatchRegistry(body PatchRegistryBody, name string) error {
+
+	return c.Patch(
+		fmt.Sprintf("/scan/registry/%s", name),
+		PatchRegistryBodyFull{body},
+		nil,
+	)
+}
+
+// Add a new registry to scan
+func (c *Client) CreateRegistry(body CreateRegistryBody) error {
+	return c.Post(
+		"/scan/registry",
+		CreateRegistryBodyFull{body},
+		nil,
+	)
+}
+
+// Returns a list of registry
+func (c *Client) GetRegistries() (*GetRegistriesResponse, error) {
 	var ret GetRegistriesResponse
 
-	if err := client.Get(GetRegistriesEndpoint, &ret); err != nil {
+	if err := c.Get("/scan/registry", &ret); err != nil {
 		return nil, err
 	}
 
@@ -96,14 +142,23 @@ func GetRegistries(client *client.Client) (*GetRegistriesResponse, error) {
 }
 
 // Returns a registry with a specific `name`
-func GetRegistry(client *client.Client, name string) (*GetRegistryResponse, error) {
+func (c *Client) GetRegistry(name string) (*GetRegistryResponse, error) {
 	var ret GetRegistryResponse
 
-	url := fmt.Sprintf(GetRegistryEndpoint, name)
+	url := fmt.Sprintf("/scan/registry/%s", name)
 
-	if err := client.Get(url, &ret); err != nil {
+	if err := c.Get(url, &ret); err != nil {
 		return nil, err
 	}
 
 	return &ret, nil
+}
+
+// Delete a registry
+func (c *Client) DeleteRegistry(name string) error {
+	return c.Delete(
+		fmt.Sprintf("/scan/registry/%s", name),
+		nil,
+		nil,
+	)
 }
