@@ -29,7 +29,7 @@ func TestExpiredToken(t *testing.T) {
 
 	var ret any
 
-	if err := client.Get("/policy/rule", ret); err != nil {
-		println(err.Error())
+	if err := client.Get("/policy/rule", ret); err == nil {
+		t.Errorf("%s", err.Error())
 	}
 }

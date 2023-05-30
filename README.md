@@ -1,5 +1,7 @@
 # 🐛 go-neuvector
 
+![tests](https://github.com/theobori/go-neuvector/actions/workflows/tests.yml/badge.svg)
+
 NeuVector Controller API wrapper with abstraction for useful features.
 
 ## 📖 How to build and run ?
