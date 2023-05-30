@@ -128,8 +128,8 @@ func (c *Client) GetGroups() (*GetGroupsResponseFull, error) {
 	return &ret, nil
 }
 
-func (c *Client) GetGroup(name string) (*GetGroupResponse, error) {
-	var ret GetGroupResponse
+func (c *Client) GetGroup(name string) (*GetGroupResponseFull, error) {
+	var ret GetGroupResponseFull
 
 	url := fmt.Sprintf("/group/%s", name)
 

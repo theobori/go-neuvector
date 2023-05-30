@@ -59,9 +59,9 @@ func TestGetGroup(t *testing.T) {
 		return
 	}
 
-	groups, err := c.GetGroup("nodes")
+	group, err := c.GetGroup("nodes")
 
-	if err != nil || groups == nil {
+	if err != nil || group == nil {
 		t.Errorf(err.Error())
 	}
 }
