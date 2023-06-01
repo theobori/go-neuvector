@@ -60,12 +60,11 @@ func TestPatchServiceConfig(t *testing.T) {
 	}
 
 	config := PatchServiceConfigBody{
-		Services:  new([]string),
+		Services:  []string{"nodes"},
 		NotScored: new(bool),
 	}
 
 	*config.NotScored = true
-	*config.Services = []string{"nodes"}
 
 	err = c.PatchServiceConfig(config)
 

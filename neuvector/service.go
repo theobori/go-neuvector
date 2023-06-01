@@ -19,10 +19,10 @@ type CreateServiceBodyFull struct {
 
 // Represents the required body to patch a service configuration
 type PatchServiceConfigBody struct {
-	Services        *[]string `json:"services,omitempty"`
-	PolicyMode      *string   `json:"policy_mode,omitempty"`
-	BaselineProfile *string   `json:"baseline_profile,omitempty"`
-	NotScored       *bool     `json:"not_scored,omitempty"`
+	Services        []string `json:"services"`
+	PolicyMode      *string  `json:"policy_mode,omitempty"`
+	BaselineProfile *string  `json:"baseline_profile,omitempty"`
+	NotScored       *bool    `json:"not_scored,omitempty"`
 }
 
 // Represents the complete required body to patch a service configuration
