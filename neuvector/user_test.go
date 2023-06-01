@@ -29,19 +29,45 @@ func TestCreateUser(t *testing.T) {
 		return
 	}
 
+	password := "SuperPassword1&"
+
 	err = c.CreateUser(
 		CreateUserBody{
 			Username: "usertest",
 			Fullname: "usertest",
-			Email: "my-email@free.fr",
-			Locale: "en",
-			Password: "SuperPassword1&",
-			Role: "reader",
-			Timeout: 300,
+			Email:    "my-email@free.fr",
+			Locale:   "en",
+			Password: &password,
+			Role:     "reader",
+			Timeout:  300,
 		},
 	)
 
-	if err != nil{
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+// Test if the client is able to patch a specific user
+func TestPatchUser(t *testing.T) {
+	c, err := NewDefaultClient()
+
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	role := "admin"
+
+	err = c.PatchUser(
+		"usertest",
+		PatchUserBody{
+			Fullname: "usertest",
+			Role: &role,
+		},
+	)
+
+	if err != nil {
 		t.Error(err)
 	}
 }
