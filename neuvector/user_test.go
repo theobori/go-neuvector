@@ -1,6 +1,7 @@
 package neuvector
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -82,6 +83,97 @@ func TestDeleteUser(t *testing.T) {
 	}
 
 	err = c.DeleteUser("usertest")
+
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+// Test if the client is able to get a specific user role
+func TestGetUserRole(t *testing.T) {
+	c, err := NewDefaultClient()
+
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	role, err := c.GetUserRole("reader")
+
+	fmt.Println(role)
+
+	if err != nil || role == nil {
+		t.Error(err)
+	}
+}
+
+// Test if the client is able to create an user role
+func TestCreateUserRole(t *testing.T) {
+	c, err := NewDefaultClient()
+
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	err = c.CreateUserRole(
+		CreateUserRoleBody{
+			Name: "customtest",
+			Comment: "",
+			Permissions: []UserRolePermission {
+				{
+					ID: "vulnerability",
+					Read: true,
+					Write: true,
+				},
+			},
+		},
+	)
+
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+// Test if the client is able to create an user role
+func TestPatchUserRole(t *testing.T) {
+	c, err := NewDefaultClient()
+
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	err = c.PatchUserRole(
+		"customtest",
+		PatchUserRoleBody{
+			Name: "customtest",
+			Comment: "HHHHHHHHHH",
+			Permissions: []UserRolePermission {
+				{
+					ID: "ci_scan",
+					Read: false,
+					Write: true,
+				},
+			},
+		},
+	)
+
+	if err != nil {
+		t.Error(err)
+	}
+}
+
+// Test if the client is able to delete a specific user role
+func TestDeleteUserRole(t *testing.T) {
+	c, err := NewDefaultClient()
+
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	err = c.DeleteUserRole("customtest")
 
 	if err != nil {
 		t.Error(err)

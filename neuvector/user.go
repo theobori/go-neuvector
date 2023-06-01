@@ -52,7 +52,40 @@ type CreateUserBody = User
 
 type CreateUserBodyFull = GetUserResponseFull
 
-func (c *Client) GetUser(fullname string) (*User, error) {
+type UserRolePermission struct {
+    ID    string `json:"id"`
+    Read  bool   `json:"read"`
+    Write bool   `json:"write"`
+}
+
+type GetUserRoleResponse struct {
+    Name        string               `json:"name"`
+    Comment     string               `json:"comment"`
+    Reserved    bool                 `json:"reserved"`
+    Permissions []UserRolePermission `json:"permissions"`
+}
+
+type UserRole = GetUserRoleResponse
+
+type GetUserRoleResponseFull struct {
+    Role UserRole `json:"role"`
+}
+
+type CreateUserRoleBody struct {
+    Name        string               `json:"name"`
+    Comment     string               `json:"comment"`
+    Permissions []UserRolePermission `json:"permissions"`
+}
+
+type CreateUserRoleBodyFull struct {
+    Config CreateUserRoleBody `json:"config"`
+}
+
+type PatchUserRoleBody = CreateUserRoleBody
+
+type PatchUserRoleBodyFull = CreateUserRoleBodyFull
+
+func (c *Client) GetUser(fullname string) (*GetUserResponseFull, error) {
 	var ret GetUserResponseFull
 
 	url := fmt.Sprintf("/user/%s", fullname)
@@ -61,7 +94,7 @@ func (c *Client) GetUser(fullname string) (*User, error) {
 		return nil, err
 	}
 
-	return &ret.User, nil
+	return &ret, nil
 }
 
 func (c *Client) CreateUser(body CreateUserBody) error {
@@ -84,6 +117,42 @@ func (c *Client) PatchUser(fullname string, body PatchUserBody) error {
 	return c.Patch(
 		fmt.Sprintf("/user/%s", fullname),
 		PatchUserBodyFull{body},
+		nil,
+	)
+}
+
+func (c *Client) GetUserRole(name string) (*GetUserRoleResponseFull, error) {
+	var ret GetUserRoleResponseFull
+
+	url := fmt.Sprintf("/user_role/%s", name)
+
+	if err := c.Get(url, &ret); err != nil {
+		return nil, err
+	}
+
+	return &ret, nil
+}
+
+func (c *Client) CreateUserRole(body CreateUserRoleBody) error {
+	return c.Post(
+		"/user_role",
+		CreateUserRoleBodyFull{body},
+		nil,
+	)
+}
+
+func (c *Client) DeleteUserRole(name string) error {
+	return c.Delete(
+		fmt.Sprintf("/user_role/%s", name),
+		nil,
+		nil,
+	)
+}
+
+func (c *Client) PatchUserRole(fullname string, body PatchUserRoleBody) error {
+	return c.Patch(
+		fmt.Sprintf("/user_role/%s", fullname),
+		PatchUserRoleBodyFull{body},
 		nil,
 	)
 }
