@@ -59,7 +59,7 @@ func TestGetGroup(t *testing.T) {
 		return
 	}
 
-	group, err := c.GetGroup("nodes")
+	group, err := c.GetGroup("containerEQU")
 
 	if err != nil || group == nil {
 		t.Error(err)

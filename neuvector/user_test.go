@@ -64,7 +64,7 @@ func TestPatchUser(t *testing.T) {
 		"usertest",
 		PatchUserBody{
 			Fullname: "usertest",
-			Role: &role,
+			Role:     &role,
 		},
 	)
 
@@ -118,12 +118,12 @@ func TestCreateUserRole(t *testing.T) {
 
 	err = c.CreateUserRole(
 		CreateUserRoleBody{
-			Name: "customtest",
+			Name:    "customtest",
 			Comment: "",
-			Permissions: []UserRolePermission {
+			Permissions: []UserRolePermission{
 				{
-					ID: "vulnerability",
-					Read: true,
+					ID:    "vulnerability",
+					Read:  true,
 					Write: true,
 				},
 			},
@@ -147,12 +147,12 @@ func TestPatchUserRole(t *testing.T) {
 	err = c.PatchUserRole(
 		"customtest",
 		PatchUserRoleBody{
-			Name: "customtest",
+			Name:    "customtest",
 			Comment: "HHHHHHHHHH",
-			Permissions: []UserRolePermission {
+			Permissions: []UserRolePermission{
 				{
-					ID: "ci_scan",
-					Read: false,
+					ID:    "ci_scan",
+					Read:  false,
 					Write: true,
 				},
 			},

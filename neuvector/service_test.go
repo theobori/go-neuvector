@@ -1,6 +1,8 @@
 package neuvector
 
-import "testing"
+import (
+	"testing"
+)
 
 // Test if the client is able to create a service
 func TestCreateService(t *testing.T) {
@@ -14,7 +16,7 @@ func TestCreateService(t *testing.T) {
 	}
 
 	config := CreateServiceBody{
-		Name:      "test",
+		Name:      "testsvc",
 		Comment:   "a simple test service",
 		NotScored: new(bool),
 	}
@@ -24,6 +26,24 @@ func TestCreateService(t *testing.T) {
 	err = c.CreateService(config)
 
 	if err != nil {
+		t.Error(err)
+	}
+}
+
+// Test if the client is able to get a service
+func TestGetService(t *testing.T) {
+	var err error
+
+	c, err := NewDefaultClient()
+
+	if err != nil {
+		t.Error(err)
+		return
+	}
+
+	service, err := c.GetService("testsvc")
+
+	if err != nil || service == nil {
 		t.Error(err)
 	}
 }
