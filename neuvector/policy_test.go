@@ -7,14 +7,14 @@ func TestGetPolicies(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	policies, err := c.GetPolicies()
 
 	if err != nil || policies == nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -23,7 +23,7 @@ func TestGetPolicy(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -41,7 +41,7 @@ func TestPatchFedPolicy(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 

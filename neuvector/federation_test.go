@@ -9,7 +9,7 @@ func TestPromote(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -25,7 +25,7 @@ func TestPromote(t *testing.T) {
 	)
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -34,7 +34,7 @@ func TestDemote(t *testing.T) {
 	_, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -42,6 +42,6 @@ func TestDemote(t *testing.T) {
 	// err = c.Demote()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }

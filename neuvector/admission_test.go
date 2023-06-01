@@ -9,7 +9,7 @@ func TestCreateFedAdmissionRule(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -49,7 +49,7 @@ func TestDeleteFedAdmissionRule(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -65,14 +65,14 @@ func TestGetAdmissionRules(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	rules, err := c.GetAdmissionRules()
 
 	if err != nil || rules == nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -81,7 +81,7 @@ func TestGetAdmissionRule(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 

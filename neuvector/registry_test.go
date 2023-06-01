@@ -7,14 +7,14 @@ func TestGetRegistries(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	registries, err := c.GetRegistries()
 
 	if err != nil || registries == nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -23,7 +23,7 @@ func TestGetRegistry(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -41,7 +41,7 @@ func TestCreateRegistry(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -63,7 +63,7 @@ func TestCreateRegistry(t *testing.T) {
 	)
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -74,7 +74,7 @@ func TestDeleteRegistry(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -92,7 +92,7 @@ func TestPatchRegistry(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 

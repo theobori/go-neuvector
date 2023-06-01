@@ -7,14 +7,14 @@ func TestAcceptEULA(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	err = c.AcceptEULA(AcceptEULABody{Accepted: true})
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -23,13 +23,13 @@ func TestGetEULA(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	eula, err := c.GetEULA()
 
 	if err != nil || eula == nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }

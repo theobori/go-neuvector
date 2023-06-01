@@ -11,7 +11,7 @@ func TestCreateGroup(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -30,7 +30,7 @@ func TestCreateGroup(t *testing.T) {
 	)
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -39,14 +39,14 @@ func TestGetGroups(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	groups, err := c.GetGroups()
 
 	if err != nil || groups == nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -55,14 +55,14 @@ func TestGetGroup(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
 	group, err := c.GetGroup("nodes")
 
 	if err != nil || group == nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -73,7 +73,7 @@ func TestPatchGroup(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -93,6 +93,6 @@ func TestPatchGroup(t *testing.T) {
 	)
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }

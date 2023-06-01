@@ -9,7 +9,7 @@ func TestCreateService(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -24,7 +24,7 @@ func TestCreateService(t *testing.T) {
 	err = c.CreateService(config)
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
 
@@ -35,7 +35,7 @@ func TestPatchServiceConfig(t *testing.T) {
 	c, err := NewDefaultClient()
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 		return
 	}
 
@@ -50,6 +50,6 @@ func TestPatchServiceConfig(t *testing.T) {
 	err = c.PatchServiceConfig(config)
 
 	if err != nil {
-		t.Errorf(err.Error())
+		t.Error(err)
 	}
 }
