@@ -1,7 +1,6 @@
 package neuvector
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -99,8 +98,6 @@ func TestGetUserRole(t *testing.T) {
 	}
 
 	role, err := c.GetUserRole("reader")
-
-	fmt.Println(role)
 
 	if err != nil || role == nil {
 		t.Error(err)

@@ -2,6 +2,7 @@ package neuvector
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -34,6 +35,8 @@ type Client struct {
 	token string
 	// Client configuration, only used to refresh the token
 	config *ClientConfig
+	// Context
+	ctx context.Context
 }
 
 // Instanciates a new Client object
@@ -44,6 +47,8 @@ func NewClient(config *ClientConfig) (*Client, error) {
 		client:  config.GetHTTPClient(),
 		config:  config,
 	}
+
+	client.WithBackgroungContext()
 
 	if err := client.RefreshToken(); err != nil {
 		return nil, err
@@ -86,6 +91,18 @@ func (client *Client) RefreshToken() error {
 	return nil
 }
 
+func (client *Client) WithContext(ctx context.Context) *Client {
+	client.ctx = ctx
+	
+	return client
+}
+
+func (client *Client) WithBackgroungContext() *Client {
+	client.ctx = context.Background()
+	
+	return client
+}
+
 // Update the HTTP(s) request header with client configuration
 func (client *Client) UpdateHeader(header *http.Header, hasBody bool) {
 	header.Add("X-Auth-Token", client.token)
@@ -115,7 +132,8 @@ func (client *Client) NewRequest(
 		}
 	}
 
-	req, err := http.NewRequest(
+	req, err := http.NewRequestWithContext(
+		client.ctx,
 		method,
 		url,
 		bytes.NewReader(body),
@@ -199,6 +217,9 @@ func (client *Client) CallAPI(
 	if err = json.Unmarshal([]byte(body), &ret); err != nil {
 		return err
 	}
+
+	// Restore the default context
+	client.WithBackgroungContext()
 
 	return nil
 }

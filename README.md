@@ -36,3 +36,4 @@ make test
 - [x] Federation promote as master cluster
 - [x] eula
 - [x] service create/delete
+- [x] Passing context to HTTP requests
